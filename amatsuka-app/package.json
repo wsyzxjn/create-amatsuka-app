@@ -1,0 +1,46 @@
+{
+  "name": "amatsuka-app",
+  "description": "A simple Node.js project created by create-amatsuka-app",
+  "author": "amatsuka <amatsukamao@qq.com>",
+  "version": "0.1.0",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@10.16.1",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "scripts": {
+    "lint": "eslint --ext .ts,.js src",
+    "prettier": "prettier --write 'src/**/*.ts'",
+    "build": "tsup",
+    "build:production": "cross-env NODE_ENV=production tsup",
+    "prepublishOnly": "pnpm run prettier && pnpm run build:production"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "@typescript-eslint/parser": "^8.44.0",
+    "cross-env": "^10.0.0",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.6.2",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

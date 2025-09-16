@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.npmrc
+.DS_Store
+*.img
+*.txt
+*.opt

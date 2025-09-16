@@ -1,0 +1,30 @@
+{
+  "name": "create-amatsuka-app",
+  "description": "Create an amatsuka app",
+  "author": "amatsuka <amatsukamao@qq.com>",
+  "version": "0.1.1",
+  "files": [
+    "dist",
+    "bin",
+    "templates",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "type": "module",
+  "bin": {
+    "create-amatsuka-app": "bin/create-amatsuka-app.js"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.8.6",
+    "execa": "^9.6.0",
+    "fs-extra": "^11.3.2"
+  }
+}

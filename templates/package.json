@@ -1,0 +1,36 @@
+{
+  "name": "",
+  "description": "",
+  "author": "amatsuka <amatsukamao@qq.com>",
+  "version": "0.1.0",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "scripts": {
+    "lint": "eslint --ext .ts,.js src",
+    "prettier": "prettier --write 'src/**/*.ts'",
+    "build": "tsup",
+    "build:production": "cross-env NODE_ENV=production tsup",
+    "prepublishOnly": "pnpm run prettier && pnpm run build:production"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
