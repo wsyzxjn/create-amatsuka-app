@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { input, select } from "@inquirer/prompts";
+import { confirm, input, select } from "@inquirer/prompts";
 import { execa } from "execa";
 import fs from "fs-extra";
 
@@ -49,15 +49,6 @@ dist/
 `
 );
 
-const devDependencies = [
-  "tsup",
-  "@biomejs/biome",
-  "cross-env",
-  "typescript",
-  "tsx",
-  "@types/node",
-];
-
 // 选择包管理器
 const packageManager = await select({
   message: "请选择包管理器:",
@@ -78,10 +69,38 @@ if (await fs.pathExists(pkgPath)) {
   await fs.writeJson(pkgPath, pkg, { spaces: 2 });
 }
 
-// 3. 安装依赖
-await execa(packageManager, ["i", "-D", ...devDependencies], {
-  cwd: targetDir,
+// 3. 询问是否立即安装依赖
+const shouldInstall = await confirm({
+  message: "是否现在安装依赖？",
+  default: true,
 });
+
+if (shouldInstall) {
+  console.log(`\n📦 正在安装依赖，请稍候...`);
+  try {
+    await execa(packageManager, ["install"], {
+      cwd: targetDir,
+      stdio: "inherit",
+    });
+    console.log(`\n✅ 依赖安装完成！`);
+  } catch (error) {
+    console.error(`\n❌ 依赖安装失败: ${error.message}`);
+    console.log(`\n💡 你可以稍后手动运行以下命令安装依赖:`);
+    console.log(`   cd ${projectName}`);
+    console.log(`   ${packageManager} install`);
+  }
+} else {
+  console.log(`\n💡 你可以稍后手动运行以下命令安装依赖:`);
+  console.log(`   cd ${projectName}`);
+  console.log(`   ${packageManager} install`);
+}
 
 // 4. 完成提示
 console.log(`\n✅ 项目 ${projectName} 创建完成！`);
+console.log(`\n🚀 开始使用:`);
+console.log(`   cd ${projectName}`);
+if (!shouldInstall) {
+  console.log(`   ${packageManager} install`);
+}
+console.log(`   ${packageManager} run build`);
+
