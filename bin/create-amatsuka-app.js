@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
-import fs from "fs-extra";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { input, select } from "@inquirer/prompts";
 import { execa } from "execa";
+import fs from "fs-extra";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -51,15 +51,11 @@ dist/
 
 const devDependencies = [
   "tsup",
-  "prettier",
+  "@biomejs/biome",
   "cross-env",
   "typescript",
   "tsx",
-  "eslint",
   "@types/node",
-  "@typescript-eslint/eslint-plugin",
-  "@typescript-eslint/parser",
-  "eslint-config-prettier",
 ];
 
 // 选择包管理器

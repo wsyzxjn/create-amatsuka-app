@@ -25,11 +25,12 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "lint": "eslint --ext .ts,.js src",
-    "prettier": "prettier --write 'src/**/*.ts'",
+    "lint": "biome check src",
+    "format": "biome format --write src",
+    "check": "biome check --write src",
     "build": "tsup",
     "build:production": "cross-env NODE_ENV=production tsup",
-    "prepublishOnly": "pnpm run prettier && pnpm run build:production"
+    "prepublishOnly": "pnpm run check && pnpm run build:production"
   },
   "devDependencies": {},
   "dependencies": {}
