@@ -49,6 +49,15 @@ dist/
 `
 );
 
+const devDependencies = [
+  "tsup",
+  "@biomejs/biome",
+  "cross-env",
+  "typescript",
+  "tsx",
+  "@types/node",
+];
+
 // 选择包管理器
 const packageManager = await select({
   message: "请选择包管理器:",
@@ -78,7 +87,7 @@ const shouldInstall = await confirm({
 if (shouldInstall) {
   console.log(`\n📦 正在安装依赖，请稍候...`);
   try {
-    await execa(packageManager, ["install"], {
+    await execa(packageManager, ["install", "-D", ...devDependencies], {
       cwd: targetDir,
       stdio: "inherit",
     });
@@ -87,12 +96,12 @@ if (shouldInstall) {
     console.error(`\n❌ 依赖安装失败: ${error.message}`);
     console.log(`\n💡 你可以稍后手动运行以下命令安装依赖:`);
     console.log(`   cd ${projectName}`);
-    console.log(`   ${packageManager} install`);
+    console.log(`   ${packageManager} install -D ${devDependencies.join(" ")}`);
   }
 } else {
   console.log(`\n💡 你可以稍后手动运行以下命令安装依赖:`);
   console.log(`   cd ${projectName}`);
-  console.log(`   ${packageManager} install`);
+  console.log(`   ${packageManager} install -D ${devDependencies.join(" ")}`);
 }
 
 // 4. 完成提示

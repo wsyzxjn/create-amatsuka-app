@@ -32,13 +32,6 @@
     "build:production": "cross-env NODE_ENV=production tsup",
     "prepublishOnly": "pnpm run check && pnpm run build:production"
   },
-  "devDependencies": {
-    "@biomejs/biome": "*",
-    "@types/node": "*",
-    "cross-env": "*",
-    "tsup": "*",
-    "tsx": "*",
-    "typescript": "*"
-  },
+  "devDependencies": {},
   "dependencies": {}
 }
