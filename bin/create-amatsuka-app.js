@@ -109,7 +109,7 @@ console.log(`\n✅ 项目 ${projectName} 创建完成！`);
 console.log(`\n🚀 开始使用:`);
 console.log(`   cd ${projectName}`);
 if (!shouldInstall) {
-  console.log(`   ${packageManager} install`);
+  console.log(`   ${packageManager} install -D ${devDependencies.join(" ")}`);
 }
 console.log(`   ${packageManager} run build`);
 
