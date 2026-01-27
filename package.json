@@ -2,7 +2,7 @@
   "name": "create-amatsuka-app",
   "description": "Create an amatsuka app",
   "author": "amatsuka <amatsukamao@qq.com>",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "files": [
     "dist",
     "bin",
