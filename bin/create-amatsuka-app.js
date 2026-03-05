@@ -50,7 +50,7 @@ dist/
 );
 
 const devDependencies = [
-  "tsup",
+  "tsdown",
   "@biomejs/biome",
   "cross-env",
   "typescript",

@@ -28,8 +28,8 @@
     "lint": "biome check src",
     "format": "biome format --write src",
     "check": "biome check --write src",
-    "build": "tsup",
-    "build:production": "cross-env NODE_ENV=production tsup",
+    "build": "tsdown",
+    "build:production": "cross-env NODE_ENV=production tsdown",
     "prepublishOnly": "pnpm run check && pnpm run build:production"
   },
   "devDependencies": {},
