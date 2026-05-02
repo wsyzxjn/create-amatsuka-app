@@ -1,6 +1,6 @@
 {
   "name": "create-amatsuka-app",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Create an amatsuka app",
   "author": "amatsuka <amatsukamao@qq.com>",
   "bin": {
