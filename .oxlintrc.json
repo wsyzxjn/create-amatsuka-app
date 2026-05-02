@@ -1,10 +1,41 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["typescript", "unicorn", "import"],
+  "plugins": [
+    "eslint",
+    "typescript",
+    "unicorn",
+    "oxc",
+    "import",
+    "node",
+    "promise"
+  ],
+  "jsPlugins": ["eslint-plugin-perfectionist"],
   "categories": {
     "correctness": "error",
     "suspicious": "warn",
     "perf": "warn"
+  },
+  "rules": {
+    "perfectionist/sort-classes": [
+      "warn",
+      {
+        "type": "natural",
+        "order": "asc",
+        "partitionByComment": true,
+        "groups": [
+          "index-signature",
+          ["static-property", "static-accessor-property"],
+          ["static-get-method", "static-set-method"],
+          "static-block",
+          ["property", "accessor-property"],
+          ["get-method", "set-method"],
+          "constructor",
+          ["static-method", "static-function-property"],
+          ["method", "function-property"],
+          "unknown"
+        ]
+      }
+    ]
   },
   "env": {
     "node": true,

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+
 import { confirm, input, select } from "@inquirer/prompts";
 import { execa } from "execa";
 import fs from "fs-extra";
@@ -53,6 +54,7 @@ const devDependencies = [
   "tsdown@^0.21.10",
   "oxlint@^1.62.0",
   "oxfmt@^0.47.0",
+  "eslint-plugin-perfectionist@^5.9.0",
   "typescript@^6.0.3",
   "tsx",
   "@types/node",

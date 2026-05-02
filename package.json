@@ -27,6 +27,7 @@
     "fs-extra": "^11.3.2"
   },
   "devDependencies": {
+    "eslint-plugin-perfectionist": "^5.9.0",
     "oxfmt": "^0.47.0",
     "oxlint": "^1.62.0"
   },
