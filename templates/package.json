@@ -1,37 +1,38 @@
 {
   "name": "",
+  "version": "0.1.0",
   "description": "",
   "author": "amatsuka <amatsukamao@qq.com>",
-  "version": "0.1.0",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./package.json": "./package.json"
-  },
   "files": [
     "dist",
     "package.json",
     "README.md",
     "LICENSE"
   ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "lint": "oxlint src",
+    "format": "oxfmt src",
+    "format:check": "oxfmt --check src",
+    "check": "oxlint src && oxfmt --check src",
+    "build": "tsdown --sourcemap",
+    "build:production": "tsdown",
+    "prepublishOnly": "oxlint src && oxfmt --check src && tsdown"
+  },
+  "dependencies": {},
+  "devDependencies": {},
   "engines": {
     "node": ">=20.0.0"
   },
-  "packageManager": "",
-  "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "scripts": {
-    "lint": "biome check src",
-    "format": "biome format --write src",
-    "check": "biome check --write src",
-    "build": "tsdown",
-    "build:production": "cross-env NODE_ENV=production tsdown",
-    "prepublishOnly": "pnpm run check && pnpm run build:production"
-  },
-  "devDependencies": {},
-  "dependencies": {}
+  "packageManager": ""
 }

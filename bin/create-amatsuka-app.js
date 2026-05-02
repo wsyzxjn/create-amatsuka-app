@@ -5,8 +5,8 @@ import { confirm, input, select } from "@inquirer/prompts";
 import { execa } from "execa";
 import fs from "fs-extra";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const currentFilePath = fileURLToPath(import.meta.url);
+const currentDirPath = dirname(currentFilePath);
 
 // 获取命令行参数
 // process.argv[0] → node 路径
@@ -30,7 +30,7 @@ const projectDescription = await input({
 });
 
 // 模板路径
-const templateDir = resolve(__dirname, "../templates");
+const templateDir = resolve(currentDirPath, "../templates");
 
 // 目标路径 = 当前运行目录 + 项目名
 const targetDir = resolve(process.cwd(), projectName);
@@ -50,10 +50,10 @@ dist/
 );
 
 const devDependencies = [
-  "tsdown",
-  "@biomejs/biome",
-  "cross-env",
-  "typescript",
+  "tsdown@^0.21.10",
+  "oxlint@^1.62.0",
+  "oxfmt@^0.47.0",
+  "typescript@^6.0.3",
   "tsx",
   "@types/node",
 ];
@@ -72,7 +72,7 @@ if (await fs.pathExists(pkgPath)) {
   pkg.name = projectName; // 动态修改包名
   pkg.description = projectDescription; // 动态修改描述
   const packageManagerVersion = await execa(packageManager, ["--version"]).then(
-    result => result.stdout
+    (result) => result.stdout
   );
   pkg.packageManager = `${packageManager}@${packageManagerVersion}`;
   await fs.writeJson(pkgPath, pkg, { spaces: 2 });
@@ -112,4 +112,3 @@ if (!shouldInstall) {
   console.log(`   ${packageManager} install -D ${devDependencies.join(" ")}`);
 }
 console.log(`   ${packageManager} run build`);
-

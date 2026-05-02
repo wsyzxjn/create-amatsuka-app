@@ -1,8 +1,11 @@
 {
   "name": "create-amatsuka-app",
+  "version": "0.1.6",
   "description": "Create an amatsuka app",
   "author": "amatsuka <amatsukamao@qq.com>",
-  "version": "0.1.6",
+  "bin": {
+    "create-amatsuka-app": "bin/create-amatsuka-app.js"
+  },
   "files": [
     "dist",
     "bin",
@@ -11,20 +14,24 @@
     "README.md",
     "LICENSE"
   ],
-  "engines": {
-    "node": ">=20.0.0"
-  },
   "type": "module",
-  "bin": {
-    "create-amatsuka-app": "bin/create-amatsuka-app.js"
-  },
-  "scripts": {},
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4"
+  "scripts": {
+    "lint": "oxlint bin templates",
+    "format": "oxfmt bin templates package.json",
+    "format:check": "oxfmt --check bin templates package.json",
+    "check": "pnpm run lint && pnpm run format:check"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.8.6",
     "execa": "^9.6.0",
     "fs-extra": "^11.3.2"
-  }
+  },
+  "devDependencies": {
+    "oxfmt": "^0.47.0",
+    "oxlint": "^1.62.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
 }
